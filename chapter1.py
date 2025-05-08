@@ -63,17 +63,3 @@ def isSameAfterReversals(self, num: int) -> bool:
     if num == 0 or num % 10 != 0:
         return True
     return False
-
-def one_chicken():
-    p,c = map(int, input().split())
-
-    if c - p == 0:
-        print("Dr. Chaz have no left over!")
-    elif c - p == 1:
-        print("Dr. Chaz will have 1 piece of chicken left over!")
-    elif c - p > 1:
-        print("Dr. Chaz will have", c - p, "pieces of chicken left over!")
-    elif p - c == 1:
-        print("Dr. Chaz need 1 more piece of chicken!")
-    else:
-        print(f"Dr. Chaz needs {p-c} more pieces of chicken!")
