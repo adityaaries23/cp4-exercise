@@ -63,3 +63,72 @@ def isSameAfterReversals(self, num: int) -> bool:
     if num == 0 or num % 10 != 0:
         return True
     return False
+
+
+def subtractProductAndSum(n: int) -> int:
+    # https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/
+    total, product = 0, 1
+    for digit in str(n):
+        d = int(digit)
+        total += d
+        product *= d
+    return product - total
+
+
+def differenceOfSums(self, n: int, m: int) -> int:
+    #https://leetcode.com/problems/divisible-and-non-divisible-sums-difference/
+    a = [a for a in range(0, n + 1) if a % m != 0 ]
+    b = [a for a in range(0, n + 1) if a % m == 0 ]
+    return sum(a) - sum(b)
+
+def averageValue(nums: List[int]) -> int:
+    # https://leetcode.com/problems/average-value-of-even-numbers-that-are-divisible-by-three/
+    divisible_nums = [num for num in nums if num % 6 == 0]
+    return sum(divisible_nums) // len(divisible_nums) if divisible_nums else 0
+
+def countEven(num: int) -> int:
+    # https://leetcode.com/problems/count-integers-with-even-digit-sum/
+    nums = 0
+    for a in range(1, num + 1):
+        t = sum([int(x) for x in str(a)])
+        if t % 2 == 0:
+            nums += 1
+    return nums
+
+def average(self, salary: List[int]) -> float:
+    # https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/description/
+    maximum = max(salary)
+    minimum = min(salary)
+    return (sum(salary) - maximum - minimum) / (len(salary) - 2)
+
+
+def transpose(matrix: List[List[int]]) -> List[List[int]]:
+    # https://leetcode.com/problems/transpose-matrix/
+    return [*zip(*matrix)]
+
+def distanceTraveled(mainTank: int, additionalTank: int) -> int:
+    # https://leetcode.com/problems/total-distance-traveled/
+    t = mainTank
+    a = 0
+    for i in range(1, additionalTank+1):
+        if t < 5:
+            break
+        t -= 4
+        a += 1
+    return (a + mainTank)*10
+
+def reverse(x: int) -> int:
+    # https://leetcode.com/problems/reverse-integer/
+    s = str(x)
+    sign = -1 if s[0] == '-' else 1
+
+    # Remove sign for processing if needed
+    s = s[1:] if sign == -1 else s
+
+    # Reverse and convert back to integer with sign
+    reversed_num = sign * int(s[::-1])
+
+    # Check 32-bit integer bounds
+    return reversed_num if -2 ** 31 <= reversed_num <= 2 ** 31 - 1 else 0
+
+
