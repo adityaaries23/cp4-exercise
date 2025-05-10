@@ -131,4 +131,75 @@ def reverse(x: int) -> int:
     # Check 32-bit integer bounds
     return reversed_num if -2 ** 31 <= reversed_num <= 2 ** 31 - 1 else 0
 
+def lengthOfLastWord(s: str) -> int:
+    # https://leetcode.com/problems/length-of-last-word/
+    s = s.strip()
+    split = s.split(sep=" ")
+    return len(split[-1]) if split else 0
+
+def decodeMessage(key: str, message: str) -> str:
+    # https://leetcode.com/problems/decode-the-message/
+    unique_chars = dict.fromkeys(key.replace(" ", ""))
+    chars = {}
+
+    for i,k in enumerate(unique_chars):
+        if  i < 26:
+            chars[k] = chr(97 + i)
+
+    result = ''
+    for ch in message:
+        if ch.isalpha():
+            result = result + chars.get(ch.lower())
+        else:
+            result += ch
+
+    return result
+
+def interpret(command: str) -> str:
+    #https://leetcode.com/problems/goal-parser-interpretation/
+    return command.replace("(al)","al").replace("()","o").replace("G","G")
+
+
+def defangIPaddr(address: str) -> str:
+    # https://leetcode.com/problems/defanging-an-ip-address/
+    return address.replace(".", "[.]")
+
+def isPrefixOfWord(self, sentence: str, searchWord: str) -> int:
+    # https://leetcode.com/problems/check-if-a-word-occurs-as-a-prefix-of-any-word-in-a-sentence/
+    sentence = sentence.split(sep=" ")
+    for i, word in enumerate(sentence):
+        if word.startswith(searchWord):
+            return i + 1
+    return -1
+
+def isSumEqual(firstWord: str, secondWord: str, targetWord: str) -> bool:
+    # https://leetcode.com/problems/check-if-word-equals-summation-of-two-words
+    var1 = int("".join([str(ord(a) - 97) for a in firstWord]))
+    var2 = int("".join([str(ord(a) - 97) for a in secondWord]))
+    var3 = int("".join([str(ord(a) - 97) for a in targetWord]))
+
+    return var1 + var2 == var3
+
+def getLucky(s: str, k: int) -> int:
+    # https://leetcode.com/problems/sum-of-digits-of-string-after-convert
+    value = "".join(str(ord(char) - 96) for char in s)
+
+    # Apply k transformations
+    for _ in range(k):
+        value = str(sum(int(digit) for digit in value))
+
+    return int(value)
+
+def bestHand(ranks: List[int], suits: List[str]) -> str:
+    # https://leetcode.com/problems/best-poker-hand/
+    if len(set(suits)) == 1:
+        return "Flush"
+
+    a = [ranks.count(a) for a in ranks]
+    if 3 in a or 4 in a: return "Three of a Kind"
+    if 2 in a: return "Pair"
+
+    return "High Card"
+
+
 
