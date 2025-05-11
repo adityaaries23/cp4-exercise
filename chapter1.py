@@ -201,5 +201,36 @@ def bestHand(ranks: List[int], suits: List[str]) -> str:
 
     return "High Card"
 
+def judgeCircle(moves: str) -> bool:
+    # https://leetcode.com/problems/robot-return-to-origin
+    return moves.count("L") == moves.count("R") and moves.count("U") == moves.count("D")
 
+def finalPositionOfSnake(n: int, commands: List[str]) -> int:
+    # https://leetcode.com/problems/snake-in-matrix
+    return  (commands.count("DOWN") * n) - (commands.count("UP") * n) + (commands.count("RIGHT") * 1) - (commands.count("LEFT") * 1)
 
+def dayOfYear(date: str) -> int:
+    # https://leetcode.com/problems/day-of-the-year/
+    datetime_object = datetime.strptime(date, '%Y-%m-%d')
+    return datetime_object.timetuple().tm_yday
+
+def romanToInt(s: str) -> int:
+    # https://leetcode.com/problems/roman-to-integer/
+    roman = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+    int_val = 0
+    last_val = 0
+
+    for i in s[::-1]:
+        if roman[i] >= last_val:
+            int_val += roman[i]
+            last_val = roman[i]
+        else:
+            int_val = int_val - roman[i]
+    #
+    # for i in range(len(s)):
+    #     if i > 0 and roman[s[i]] > roman[s[i - 1]]:
+    #         int_val += roman[s[i]] - 2 * roman[s[i - 1]]
+    #     else:
+    #         int_val += roman[s[i]]
+    #     print(int_val)
+    return int_val
