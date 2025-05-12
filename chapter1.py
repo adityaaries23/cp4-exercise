@@ -234,3 +234,29 @@ def romanToInt(s: str) -> int:
     #         int_val += roman[s[i]]
     #     print(int_val)
     return int_val
+
+def detectCapitalUse(word: str) -> bool:
+    # https://leetcode.com/problems/detect-capital/description/
+    return word.isupper() or word.islower() or word.istitle()
+
+def findFinalValue(nums: List[int], original: int) -> int:
+    # https://leetcode.com/problems/keep-multiplying-found-values-by-two
+    while original in nums:
+        original = original * 2
+    return original
+
+def scoreOfString(s: str) -> int:
+    # https://leetcode.com/problems/score-of-a-string/
+    if len(s) == 1:
+        return ord(s)
+    
+    return sum(abs(ord(s[i]) - ord(s[i+1])) for i in range(len(s)-1))
+
+def minOperations(nums: List[int], k: int) -> int:
+    # https://leetcode.com/problems/minimum-operations-to-make-array-sum-divisible-by-k/
+    return sum(nums) % k
+
+def isPalindrome(x: int) -> bool:
+    # https://leetcode.com/problems/palindrome-number/
+    return str(x) == str(x)[::-1]
+
