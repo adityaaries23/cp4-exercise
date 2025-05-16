@@ -1,4 +1,5 @@
 from datetime import datetime
+from functools import reduce
 from typing import List
 
 
@@ -260,3 +261,25 @@ def isPalindrome(x: int) -> bool:
     # https://leetcode.com/problems/palindrome-number/
     return str(x) == str(x)[::-1]
 
+def arraySign(nums: List[int]) -> int:
+    # https://leetcode.com/problems/sign-of-the-product-of-an-array/
+    a = reduce(lambda x, y: x * y, nums)
+    if a > 0:
+        return 1
+    elif a < 0:
+        return -1
+    else:
+        return 0
+
+def maximumCount(nums: List[int]) -> int:
+    # https://leetcode.com/problems/maximum-count-of-positive-integer-and-negative-intege
+    a = len([i for i in nums if i >= 0])
+    b = len([i for i in nums if i < 0])
+    return max(a,b)
+
+def sumOfMultiples(n: int) -> int:
+    # https://leetcode.com/problems/sum-multiples/
+    return sum([i for i in range(1,n+1) if i % 3 == 0 or i % 5 == 0 or i % 7 == 0])
+
+def sumOfSquares(nums: List[int]) -> int:
+    return sum([n * n for i,n in enumerate(nums) if len(nums) % (i+1) == 0])
