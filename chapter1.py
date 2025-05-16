@@ -282,4 +282,36 @@ def sumOfMultiples(n: int) -> int:
     return sum([i for i in range(1,n+1) if i % 3 == 0 or i % 5 == 0 or i % 7 == 0])
 
 def sumOfSquares(nums: List[int]) -> int:
+    # https://leetcode.com/problems/sum-of-squares-of-special-elements/description/
     return sum([n * n for i,n in enumerate(nums) if len(nums) % (i+1) == 0])
+
+def numberOfEmployeesWhoMetTarget(hours: List[int], target: int) -> int:
+    # https://leetcode.com/problems/number-of-employees-who-met-the-target/
+    return len([i for i in hours if i >= target])
+
+def returnToBoundaryCount(nums: List[int]) -> int:
+    # https://leetcode.com/problems/ant-on-the-boundary/
+    count = 0
+    a = 0
+    for i in nums:
+        a += i
+        if a == 0:
+            count += 1
+    return count
+
+def maxOperations(nums: List[int]) -> int:
+    # https://leetcode.com/problems/maximum-number-of-operations-with-the-same-score-i/description/
+    target_sum = nums[0] + nums[1]
+    count = 0
+
+    for i in range(0, len(nums)-1, 2):  # Skip by 2 instead of checking i % 2
+        current_sum = nums[i] + nums[i+1]
+        if current_sum != target_sum:
+            break
+        count += 1
+
+    return count
+
+def stableMountains(height: List[int], threshold: int) -> List[int]:
+    # https://leetcode.com/problems/find-indices-of-stable-mountains/
+    return [i for i in range(1, len(height)) if height[i - 1] > threshold]
